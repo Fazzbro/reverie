@@ -1,0 +1,8 @@
+{
+  "name": "reverie-social-preview",
+  "version": "1.0.0",
+  "width": 1280,
+  "height": 640,
+  "fps": 60,
+  "entry": "index.html"
+}

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gradient Generator — Reverie</title>
+<meta name="description" content="Make mesh, silky, melt, grainy and animated gradients in your browser, then export as PNG, SVG, or buttery-smooth 60 fps MP4/WebM up to 4K. No login required.">
+<link rel="icon" type="image/png" href="favicon-light.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="favicon-dark.png" media="(prefers-color-scheme: dark)">
+<link rel="preload" href="fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="gradients.css">
+<style>
+/* Additional badge styling for free & unlimited tier */
+.acct-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.acct-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+}
+.free-note {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 12px;
+  line-height: 1.4;
+}
+</style>
+<script type="module" src="js/main.js"></script>
+</head>
+<body>
+<header class="topnav">
+  <div class="brand">
+    <div class="logo"><img src="devault-logo.png" alt="Devault"><i></i></div>
+    <div><h1>Gradients</h1><p class="sub bydv">by <a href="https://devault.design/" target="_blank" rel="noopener">Devault</a> · Reverie</p></div>
+  </div>
+  <div id="account" class="acct"></div>
+</header>
+<div class="stage">
+  <div class="view">
+    <div class="frame" id="frame">
+      <canvas id="cv" aria-label="Your gradient"></canvas>
+      <div class="recbar" id="recbar" hidden><span class="rdot"></span><span id="recT">Rendering</span><span class="rtrack"><i id="recP"></i></span></div>
+      <div class="tags" id="tags"></div>
+      <div class="badge" id="badge"></div>
+    </div>
+    <div class="ratiobox" id="ratiobox">
+      <button type="button" class="rbtn" id="rbtn" aria-haspopup="true" aria-expanded="false"><i class="rico" id="rico"></i><span id="rlabel">Free</span><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 6.5 5 3.5l3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="rpop" id="rpop">
+        <div class="rtitle">Canvas size</div>
+        <div class="rgrid" id="rgrid"></div>
+        <div class="rtitle spaced">Custom size</div>
+        <div class="rcustom"><label>W<input type="number" id="cw" min="100" max="8000" value="1920"></label><span>×</span><label>H<input type="number" id="ch" min="100" max="8000" value="1080"></label><em>px</em></div>
+      </div>
+    </div>
+  </div>
+  <div class="dock">
+    <div class="drow"><span class="dl">Formats</span><div id="thumbs"></div></div>
+  </div>
+</div>
+<aside>
+  <div class="seg two tabs" id="tabs"><button type="button" data-tab="design" class="on">Design</button><button type="button" data-tab="image">Image</button></div>
+
+  <section data-tab="image">
+    <div class="lbl"><span>Image</span></div>
+    <input type="file" id="file" accept="image/*" hidden>
+    <div class="prev" id="imgPrev" hidden><img id="prevImg" alt=""><span id="imgName"></span></div>
+    <label class="drop" id="drop" for="file"><span class="dt">Upload an image</span><span class="dh">or drop one on the canvas</span></label>
+    <div class="row" id="imgBtns" hidden><button type="button" class="btn" id="imgReplace">Replace</button><button type="button" class="btn" id="imgRemove">Remove</button></div>
+    <div id="imgBox" class="spaced"></div>
+  </section>
+
+  <section data-tab="image">
+    <div class="lbl">Gradient overlay</div>
+    <div class="field"><div class="lbl"><label for="blendMode">Blend mode</label></div><select id="blendMode"></select></div>
+    <div class="field"><div class="lbl"><label for="fadeDir">Fade from</label></div><select id="fadeDir"></select></div>
+    <div id="ovBox"></div>
+    <button type="button" class="btn wide" id="toDesign">Edit gradient colours and format →</button>
+  </section>
+
+  <section data-tab="design">
+    <div class="lbl"><span>Format</span><b id="formName"></b></div>
+    <div id="formBoxes"></div>
+    <button type="button" class="btn wide" id="shuffle">Shuffle shapes</button>
+  </section>
+
+  <section data-tab="design">
+    <div class="lbl"><span>Colours</span><b id="cnt"></b></div>
+    <div id="stops"></div>
+    <div class="row">
+      <button type="button" class="btn" id="add">+ Add colour</button>
+      <button type="button" class="btn" id="rand">Randomise</button>
+    </div>
+    <div class="lbl presets-title">Presets</div>
+    <div id="presets"></div>
+    <div id="colourBox" class="spaced"></div>
+  </section>
+
+  <section data-tab="design">
+    <div class="lbl">Glass</div>
+    <div id="glassBox"></div>
+  </section>
+
+  <section data-tab="both">
+    <div class="lbl">Finish</div>
+    <div id="grainBox"></div>
+  </section>
+
+  <section data-tab="design">
+    <div class="lbl">Motion</div>
+    <div class="toggle"><span>Animate</span><button type="button" class="sw on" id="motion" aria-label="Animate" aria-pressed="true"></button></div>
+    <div id="motionBox"></div>
+    <div id="dirF"><div class="lbl"><span>Direction</span></div>
+      <div class="seg" id="dirs"><button type="button" data-d="up">Up</button><button type="button" data-d="right" class="on">Right</button><button type="button" data-d="down">Down</button><button type="button" data-d="left">Left</button></div>
+    </div>
+  </section>
+
+  <section data-tab="both">
+    <div class="lbl">Preview</div>
+    <input type="text" id="label" class="label-input" value="Reverie" maxlength="40" placeholder="Your text" aria-label="Text on the gradient">
+    <div class="seg three" id="fontSeg"><button type="button" data-f="geist" class="on">Geist</button><button type="button" data-f="mono" class="f-mono">Mono</button><button type="button" data-f="serif" class="f-serif">Serif</button></div>
+    <div id="textBox"></div>
+    <div class="lbl"><span>Text colour</span></div>
+    <div class="seg three" id="txtSeg"><button type="button" data-x="off">No text</button><button type="button" data-x="light" class="on">Light</button><button type="button" data-x="dark">Dark</button></div>
+    <div class="toggle tags-toggle"><span>Colour tags</span><button type="button" class="sw on" id="tagsSw" aria-label="Colour tags" aria-pressed="true"></button></div>
+  </section>
+
+  <div class="aside-foot"><button type="button" class="btn pri" id="exportBtn">Export</button></div>
+</aside>
+<dialog class="modal" id="modal" aria-labelledby="mtitle">
+  <div class="mcard">
+    <div class="mhead"><h2 id="mtitle">Export</h2><button type="button" class="mx" id="mclose" aria-label="Close">×</button></div>
+    <div class="seg two" id="mtabs"><button type="button" data-m="image" class="on">Image</button><button type="button" data-m="video">Video</button></div>
+
+    <div class="mpane" data-pane="image">
+      <div class="lbl">Format</div>
+      <div class="seg" id="ifmt"><button type="button" data-v="png" class="on">PNG</button><button type="button" data-v="jpg">JPG</button><button type="button" data-v="webp">WebP</button><button type="button" data-v="svg">SVG</button></div>
+      <div class="lbl">Size</div>
+      <div class="seg" id="size2"></div>
+      <p class="note" id="inote"></p>
+    </div>
+
+    <div class="mpane" data-pane="video" hidden>
+      <div class="lbl">Format</div>
+      <div class="seg two" id="vfmt"><button type="button" data-v="mp4" class="on">MP4</button><button type="button" data-v="webm">WebM</button></div>
+      <div class="lbl">Frame rate</div>
+      <div class="seg two" id="vfps"><button type="button" data-v="30">30 fps</button><button type="button" data-v="60" class="on">60 fps</button></div>
+      <div class="lbl">Resolution</div>
+      <div class="seg three" id="vsize"></div>
+      <p class="note" id="vnote"></p>
+    </div>
+
+    <p class="note free-note">✓ Downloads are free & unlimited. Video export rendered with zero-lag deterministic frame pacing.</p>
+    <div class="mfoot"><button type="button" class="btn" id="mcancel">Cancel</button><button type="button" class="btn pri" id="mgo">Download image</button></div>
+  </div>
+</dialog>
+<output class="toast" id="toast"></output>
+</body>
+</html>
