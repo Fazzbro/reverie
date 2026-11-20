@@ -135,4 +135,4 @@ saas-procedural-gradients/
 
 ## 📄 License
 
-MIT License © 2026 Fazzbro. Clean-room implementation inspired by Devault Gradients.
+MIT License © 2026 Fazzbro. Clean-room procedural implementation for AI agents.

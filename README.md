@@ -2,7 +2,7 @@
 
 ![Reverie Banner](assets/social_preview.png)
 
-A high-fidelity replication and architectural enhancement of [devault.design/gradient-generator](https://devault.design/gradient-generator/app). **Reverie** brings 13 mathematically crafted procedural gradient models, fluted glass optical refraction, cryptographic grain synthesis, photo overlay blending, and interactive typography into the browser — featuring **direct free exports** and a **zero-stutter, frame-paced 60 FPS video export engine**.
+**Reverie** is a high-performance procedural gradient generator and precision creative engine. It brings 13 mathematically crafted procedural gradient models, fluted glass optical refraction, cryptographic grain synthesis, photo overlay blending, and interactive typography into the browser — featuring **direct free exports** and a **zero-stutter, frame-paced 60 FPS video export engine**.
 
 ---
 
@@ -21,7 +21,7 @@ A high-fidelity replication and architectural enhancement of [devault.design/gra
   * **Controlled Stream Step Fallback**: For browsers without WebCodecs, implements `canvas.captureStream(0)` with manual `track.requestFrame()` on discrete ticks.
 
 ### 2. Zero-Friction Direct Downloads
-* The original site enforced an Auth.js Google popup gate before allowing image and video exports.
+* Traditional gradient tools often enforce authentication gates before allowing image and video exports.
 * **Reverie eliminates the sign-in barrier completely**: PNG, JPG, WebP, SVG, and high-bitrate 60 FPS MP4/WebM exports download immediately with a single click.
 
 ---
@@ -137,4 +137,4 @@ When activated, agents automatically discover:
 ---
 
 ## 📄 License
-MIT License. Inspired by [devault.design](https://devault.design/).
+MIT License © 2026 Reverie.

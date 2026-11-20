@@ -2,8 +2,8 @@
 export const TOOL_ID = "gradient-generator";
 
 let user = {
-    email: "guest@devault.design",
-    name: "Guest Creator",
+    email: "creator@reverie.studio",
+    name: "Studio Creator",
     picture: undefined,
 };
 

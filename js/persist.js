@@ -2,7 +2,7 @@
 import { BLEND_MODES } from "./controls.js";
 import { FORMS, RATIOS, S } from "./state.js";
 
-const KEY = "devault.gradients.return.v1";
+const KEY = "reverie.gradients.state.v1";
 const HEX = /^#[0-9a-f]{6}$/i;
 
 const CHOICES = {

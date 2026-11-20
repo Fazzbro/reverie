@@ -3,48 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gradient Generator — Reverie</title>
-<meta name="description" content="Make mesh, silky, melt, grainy and animated gradients in your browser, then export as PNG, SVG, or buttery-smooth 60 fps MP4/WebM up to 4K. No login required.">
-<link rel="icon" type="image/png" href="favicon-light.png" media="(prefers-color-scheme: light)">
-<link rel="icon" type="image/png" href="favicon-dark.png" media="(prefers-color-scheme: dark)">
+<title>Reverie — 60 FPS Procedural Gradient Engine</title>
+<meta name="description" content="Generate mathematical mesh, silk, melt, beams, glass, and animated gradients in your browser. Free & unlimited export in 4K PNG, SVG, and zero-stutter 60 fps MP4/WebM.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preload" href="fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="gradients.css">
-<style>
-/* Additional badge styling for free & unlimited tier */
-.acct-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 9999px;
-  padding: 4px 12px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #fff;
-  letter-spacing: -0.01em;
-}
-.acct-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
-}
-.free-note {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.5);
-  margin-top: 12px;
-  line-height: 1.4;
-}
-</style>
 <script type="module" src="js/main.js"></script>
 </head>
 <body>
 <header class="topnav">
   <div class="brand">
-    <div class="logo"><img src="devault-logo.png" alt="Devault"><i></i></div>
-    <div><h1>Gradients</h1><p class="sub bydv">by <a href="https://devault.design/" target="_blank" rel="noopener">Devault</a> · Reverie</p></div>
+    <div class="logo" aria-hidden="true">
+      <svg class="logo-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 2.5L29 10V22L16 29.5L3 22V10L16 2.5Z" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M16 2.5V16M29 22L16 16M3 22L16 16" stroke="rgba(255,255,255,0.2)" stroke-width="1.25"/>
+        <circle cx="16" cy="16" r="4.5" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+      </svg>
+      <i></i>
+    </div>
+    <div class="brand-info">
+      <div class="brand-row">
+        <h1>Reverie</h1>
+        <span class="brand-tag">STUDIO</span>
+      </div>
+      <p class="sub">Procedural Gradient Engine · 60 FPS</p>
+    </div>
   </div>
   <div id="account" class="acct"></div>
 </header>
