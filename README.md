@@ -116,5 +116,25 @@ npx serve .
 
 ---
 
+## 🤖 Using as an AI Agent Skill
+
+This repository is pre-configured with `SKILL.md` and `AGENTS.md` for AI coding agents (**Antigravity**, **Claude Code**, **Cursor**, **Windsurf**, **Codex**).
+
+### Install into Your Agent Workspace
+```bash
+# Antigravity / Gemini CLI (Global)
+git clone https://github.com/Fazzbro/saas-procedural-gradients.git ~/.gemini/config/skills/saas-procedural-gradients
+
+# Standalone Agent Skill Repository
+# https://github.com/Fazzbro/saas-procedural-gradients
+```
+
+When activated, agents automatically discover:
+1. All 13 procedural gradient field mathematical algorithms.
+2. Fluted glass refraction passes (`glassPass`) and film grain noise (`grainPass`).
+3. Deterministic Remotion React components and HyperFrames continuous canvas scripts.
+
+---
+
 ## 📄 License
 MIT License. Inspired by [devault.design](https://devault.design/).
